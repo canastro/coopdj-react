@@ -1,0 +1,23 @@
+{
+  "name": "coopdj-react",
+  "version": "1.0.0",
+  "description": "watchify -t 6to5ify ./src/app.jsx -o ./dist/bundle.js -v",
+  "main": "gulpfile.js",
+  "scripts": {
+    "watch": "watchify -t 6to5ify ./src/app.jsx -o ./dist/bundle.js -v"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "6to5ify": "^4.1.1",
+    "browserify": "^11.0.1",
+    "react": "^0.13.3",
+    "watchify": "^3.3.1"
+  },
+  "dependencies": {
+    "6to5ify": "^4.1.1",
+    "react": "^0.13.3",
+    "browserify": "^11.0.1",
+    "watchify": "^3.3.1"
+  }
+}
