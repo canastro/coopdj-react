@@ -19,6 +19,12 @@ var AppActions = {
             actionType: AppConstants.VOTE_DOWN,
             id: id
         });
+    },
+    play: function (id) {
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.PLAY,
+            id: id
+        });
     }
 };
 

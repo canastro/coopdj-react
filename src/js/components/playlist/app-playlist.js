@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var VoteUp = require('./app-voteup')
-var VoteDown = require('./app-votedown')
+var PlaylistItem = require('./app-playlist-item')
 var AppStore = require('../../stores/app-store');
 
 function getPlaylist() {
@@ -23,12 +22,7 @@ var Playlist = React.createClass({
     render: function () {
         var items = this.state.items.map(function (item) {
             return (
-                <li class='playlist-item'>
-                    <span>{item.url}</span>
-                    <span>{item.votes}</span>
-                    <VoteUp id={item.id} />
-                    <VoteDown id={item.id} />
-                </li>
+                <PlaylistItem id={item.id} url={item.url} votes={item.votes}/>
             )
         });
 
