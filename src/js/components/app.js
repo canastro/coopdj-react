@@ -7,12 +7,14 @@ var Playlist = require('../components/playlist/app-playlist');
 var APP = React.createClass({
     render: function () {
         return (
-            <div className="app-container">
-                <Playlist/>
+            <section className="app-container">
                 <div className="app-details">
                     <RouteHandler/>
                 </div>
-            </div>
+                <aside className="app-sidebar">
+                    <Playlist/>
+                </aside>
+            </section>
         )
     }
 })

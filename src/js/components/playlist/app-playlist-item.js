@@ -1,19 +1,28 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AppActions = require('../../actions/app-actions');
 var Link = require('react-router').Link;
+
+var AppConstants = require('../../constants/app-constants');
+var AppActions = require('../../actions/app-actions');
 
 var VoteUp = require('./app-voteup')
 var VoteDown = require('./app-votedown')
 var AppStore = require('../../stores/app-store');
 
 var PlaylistItem = React.createClass({
+
     handler: function () {
         AppActions.play(this.props.id);
     },
+
     thumbnailUrl: function(url) {
-        return 'http://img.youtube.com/vi/' + this.props.url + '/1.jpg';
+
+        var baseUrl = AppConstants.YOUTUBE_THUMBNAIL_URL;
+        var url = baseUrl.replace('{{VIDEO_ID}}', this.props.url);
+
+        return url;
     },
+
     render: function () {
         return (
             <li className='playlist-item'>

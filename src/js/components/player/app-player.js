@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
+var Start = require('./app-start');
 
 var Player = React.createClass({
 
@@ -9,7 +10,11 @@ var Player = React.createClass({
 
     render: function() {
         return (
-            <div>{this.context.router.getCurrentParams().id}</div>
+            <div class="player-container">
+                <div>{this.context.router.getCurrentParams().id}</div>
+                <Start/>
+                <div id="player"></div>
+            </div>
         );
     }
 

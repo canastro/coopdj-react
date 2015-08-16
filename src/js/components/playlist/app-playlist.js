@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
-var PlaylistItem = require('./app-playlist-item')
+
+var PlaylistWatchMixin = require('../../mixins/playlist-watch-mixin');
+var PlaylistItem = require('./app-playlist-item');
 var AppStore = require('../../stores/app-store');
 
 function getPlaylist() {
@@ -10,15 +12,7 @@ function getPlaylist() {
 }
 
 var Playlist = React.createClass({
-    getInitialState: function () {
-        return getPlaylist();
-    },
-    componentWillMount:function(){
-        AppStore.addChangeListener(this._onChange);
-    },
-    _onChange: function(){
-        this.setState(getPlaylist());
-    },
+    mixins: [PlaylistWatchMixin(getPlaylist)],
     render: function () {
         var items = this.state.items.map(function (item) {
             return (
