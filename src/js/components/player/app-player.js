@@ -2,6 +2,7 @@
 var React = require('react');
 var Start = require('./app-start');
 
+//TODO: https://github.com/compedit/react-youtube
 var Player = React.createClass({
 
     contextTypes: {
