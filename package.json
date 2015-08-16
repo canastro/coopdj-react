@@ -14,7 +14,10 @@
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-serve": "^1.0.0",
     "react": "^0.13.3",
-    "reactify": "^1.1.1"
+    "reactify": "^1.1.1",
+    "require-dir": "^0.3.0"
   }
 }
