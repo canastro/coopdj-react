@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "events": "^1.0.2",
+    "flux": "^2.0.3",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
