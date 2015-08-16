@@ -11,7 +11,7 @@ var PlaylistItem = React.createClass({
     },
     render: function () {
         return (
-            <li onClick={this.handler} class='playlist-item'>
+            <li onClick={this.handler} className='playlist-item'>
                 <img src={'http://img.youtube.com/vi/' + this.props.url + '/1.jpg'}/>
                 <span>{this.props.votes}</span>
                 <VoteUp id={this.props.id} />

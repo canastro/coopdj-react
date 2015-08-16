@@ -27,7 +27,7 @@ var Playlist = React.createClass({
         });
 
         return (
-            <ul class='playlist'>
+            <ul className='playlist'>
                 {items}
             </ul>
         );

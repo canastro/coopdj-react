@@ -17,6 +17,7 @@
     "gulp-sass": "^2.0.4",
     "gulp-serve": "^1.0.0",
     "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "reactify": "^1.1.1",
     "require-dir": "^0.3.0"
   }
