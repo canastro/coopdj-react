@@ -10,12 +10,7 @@ var Client = React.createClass({
         return (
             <div className="app-client-container">
                 <h1>Client</h1>
-                <div className="app-details">
-                    <RouteHandler/>
-                </div>
-                <aside className="app-sidebar">
-                    <Playlist/>
-                </aside>
+                <Playlist mode="client"/>
             </div>
         );
     }

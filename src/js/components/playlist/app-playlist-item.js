@@ -24,14 +24,27 @@ var PlaylistItem = React.createClass({
     },
 
     render: function () {
+
+        var controls;
+        if (this.props.mode === 'client') {
+            controls = (
+                <div class='playlist-item-controls'>
+                    <VoteUp id={this.props.id} />
+                    <VoteDown id={this.props.id} />
+                </div>
+            );
+        }
+
         return (
             <li className='playlist-item'>
+
                 <Link to="player" params={{ id: this.props.id }}>
                     <img src={this.thumbnailUrl(this.props.url)}/>
                 </Link>
+
                 <span>{this.props.votes}</span>
-                <VoteUp id={this.props.id} />
-                <VoteDown id={this.props.id} />
+
+                {controls}
             </li>
         );
     }

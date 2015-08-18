@@ -14,9 +14,10 @@ function getPlaylist() {
 var Playlist = React.createClass({
     mixins: [PlaylistWatchMixin(getPlaylist)],
     render: function () {
+        var mode = this.props.mode;
         var items = this.state.items.map(function (item) {
             return (
-                <PlaylistItem id={item.id} url={item.url} votes={item.votes}/>
+                <PlaylistItem id={item.id} url={item.url} votes={item.votes} mode={mode}/>
             )
         });
 
