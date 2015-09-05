@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
-var Playlist = require('../playlist/app-playlist');
+var Playlist = require('../playlist/playlist');
 var YouTube = require('react-youtube');
-var AppStore = require('../../stores/app-store');
-var AppActions = require('../../actions/app-actions');
+var AppStore = require('../../stores/store');
+var AppActions = require('../../actions/actions');
 var $ = require('jquery');
 
 function getPlayingState() {
@@ -65,7 +65,7 @@ var Host = React.createClass({
         }
 
         return (
-            <div className="app-host-container">
+            <div className="app-container">
                 <h1>Host</h1>
                 <div className="app-details">
                     {player}

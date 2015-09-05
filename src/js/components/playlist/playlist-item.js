@@ -2,12 +2,11 @@
 var React = require('react');
 var Link = require('react-router').Link;
 
-var AppConstants = require('../../constants/app-constants');
-var AppActions = require('../../actions/app-actions');
-
-var VoteUp = require('./app-voteup')
-var VoteDown = require('./app-votedown')
-var AppStore = require('../../stores/app-store');
+var AppConstants = require('../../constants/constants');
+var AppActions = require('../../actions/actions');
+var VoteUp = require('./voteup')
+var VoteDown = require('./votedown')
+var AppStore = require('../../stores/store');
 
 var PlaylistItem = React.createClass({
 
@@ -37,11 +36,7 @@ var PlaylistItem = React.createClass({
 
         return (
             <li className='playlist-item'>
-
-                <Link to="player" params={{ id: this.props.id }}>
-                    <img src={this.thumbnailUrl(this.props.video_id)}/>
-                </Link>
-
+                <img src={this.thumbnailUrl(this.props.video_id)}/>
                 <span>{this.props.votes}</span>
 
                 {controls}

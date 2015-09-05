@@ -1,5 +1,5 @@
-var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
+var AppDispatcher = require('../dispatchers/dispatcher');
+var AppConstants = require('../constants/constants');
 var EnvConstants = require('../constants/env');
 var assign = require('react/lib/Object.assign');
 var $ = require('jquery');

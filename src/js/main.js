@@ -7,10 +7,9 @@ var DefaultRoute = Router.DefaultRoute;
 var RouteHandler = Router.RouteHandler;
 
 var App = require('./components/app');
-var Player = require('./components/player/app-player');
-var Index = require('./components/index/app-index');
-var Host = require('./components/host/app-host');
-var Client = require('./components/client/app-client');
+var Index = require('./components/index/index');
+var Host = require('./components/host/host');
+var Client = require('./components/client/client');
 
 
 // Here we put our React instance to the global scope. Make sure you do not put it
@@ -23,7 +22,6 @@ var routes = (
         <Route name="index" path="/" handler={Index}/>
         <Route name="client" path="client" handler={Client}/>
         <Route name="host" path="host" handler={Host}/>
-        <Route name="player" path="client/player/:id" handler={Player}/>
     </Route>
 );
 

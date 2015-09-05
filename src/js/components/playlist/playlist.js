@@ -2,9 +2,9 @@
 var React = require('react');
 
 var PlaylistWatchMixin = require('../../mixins/playlist-watch-mixin');
-var PlaylistItem = require('./app-playlist-item');
-var AppStore = require('../../stores/app-store');
-var AppActions = require('../../actions/app-actions');
+var PlaylistItem = require('./playlist-item');
+var AppStore = require('../../stores/store');
+var AppActions = require('../../actions/actions');
 
 function getPlaylistState() {
     return {

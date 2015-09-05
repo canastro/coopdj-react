@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
-var Playlist = require('../playlist/app-playlist');
+var Playlist = require('../playlist/playlist');
 
 //TODO: https://github.com/compedit/react-youtube
 var Client = React.createClass({

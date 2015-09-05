@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AppStore = require('../stores/app-store');
+var AppStore = require('../stores/store');
 
 var PlaylistWatchMixin = function (cb) {
     return {
