@@ -1,8 +1,10 @@
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
+var EnvConstants = require('../constants/env');
 var assign = require('react/lib/Object.assign');
 var $ = require('jquery');
 var EventEmitter = require('events').EventEmitter;
+var Promise = require('es6-promise').Promise;
 
 var CHANGE_EVENT = 'change';
 var playlist = [];
@@ -22,36 +24,42 @@ function _voteDown(id){
 }
 
 function _getPlaylist() {
-    return $.get('http://0.0.0.0:5000/playlist?action=all', function(result) {
+    return $.get(EnvConstants.PLAYLIST.ALL, function(result) {
         playlist = result;
     });
 }
 
 function _next() {
-    return $.get('http://0.0.0.0:5000/playlist?action=next', function(result) {
+    return $.get(EnvConstants.PLAYLIST.NEXT, function(result) {
         playing = result;
     });
 }
 
 function _play(video) {
-    var url;
+    return new Promise(function (resolve, reject) {
+        var url;
 
-    if (!video.has_played) {
-        url = 'http://0.0.0.0:5000/musics/{{ID}}?action=play';
-        url = url.replace('{{ID}}', video._id);
+        if (!video.has_played) {
+            url = EnvConstants.MUSIC.PLAY;
+            url = url.replace('{{ID}}', video._id);
 
-        $.ajax({
-            url: url,
-            type: 'PUT'
-        });
-    }
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                sucess: function (response) {
+                    resolve(response);
+                }
+            });
+        } else {
+            resolve();
+        }
+    });
 }
 
 function _reset() {
-    var url = 'http://0.0.0.0:5000/playlist?action=reset';
 
     return $.ajax({
-        url: url,
+        url: EnvConstants.PLAYLIST.RESET,
         type: 'PUT'
     })
         .then(_getPlaylist)
