@@ -3,27 +3,46 @@ var AppDispatcher = require('../dispatchers/app-dispatcher');
 
 var AppActions = {
     addItem: function(item) {
-        AppDispatcher.handleViewAction({
+        AppDispatcher.dispatch({
             actionType: AppConstants.ADD_ITEM,
             item: item
         });
     },
     voteUp: function(id) {
-        AppDispatcher.handleViewAction({
+        AppDispatcher.dispatch({
             actionType: AppConstants.VOTE_UP,
             id: id
         });
     },
     voteDown: function(id) {
-        AppDispatcher.handleViewAction({
+        AppDispatcher.dispatch({
             actionType: AppConstants.VOTE_DOWN,
             id: id
         });
     },
-    play: function (id) {
-        AppDispatcher.handleViewAction({
+
+    getPlaylist: function () {
+        AppDispatcher.dispatch({
+            actionType: AppConstants.GET_PLAYLIST
+        });
+    },
+
+    reset: function () {
+        AppDispatcher.dispatch({
+            actionType: AppConstants.RESET
+        });
+    },
+
+    play: function (video) {
+        AppDispatcher.dispatch({
             actionType: AppConstants.PLAY,
-            id: id
+            video: video
+        });
+    },
+
+    next: function () {
+        AppDispatcher.dispatch({
+            actionType: AppConstants.NEXT
         });
     }
 };

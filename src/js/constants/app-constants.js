@@ -1,5 +1,8 @@
 module.exports = {
+    NEXT: 'NEXT',
     PLAY: 'PLAY',
+    GET_PLAYLIST: 'GET_PLAYLIST',
+    RESET: 'RESET',
     VOTE_UP: 'VOTE_UP',
     VOTE_DOWN: 'VOTE_DOWN',
     ADD_ITEM: 'ADD_ITEM',

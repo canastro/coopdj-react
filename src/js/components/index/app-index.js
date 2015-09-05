@@ -11,7 +11,7 @@ var Index = React.createClass({
 
     render: function() {
         return (
-            <div class="index-container">
+            <div className="index-container">
                 <Launcher name="Client" destination="client"/>
                 <Launcher name="Host" destination="host"/>
             </div>

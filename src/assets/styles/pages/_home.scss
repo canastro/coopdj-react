@@ -1,13 +1,13 @@
 @import "../themes/theme";
 
 body {
-    background-color: $grey-00;
+    background-color: $color-04;
 }
 
 .app-container {
     display: flex;
 
-    background-color: $white;
+    height: 100vh;
 
      /* Centering the page */
     max-width:1200px;

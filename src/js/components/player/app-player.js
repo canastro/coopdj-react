@@ -11,7 +11,7 @@ var Player = React.createClass({
 
     render: function() {
         return (
-            <div class="player-container">
+            <div className="player-container">
                 <div>{this.context.router.getCurrentParams().id}</div>
                 <Start/>
                 <div id="player"></div>

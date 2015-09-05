@@ -18,7 +18,7 @@ var PlaylistItem = React.createClass({
     thumbnailUrl: function(url) {
 
         var baseUrl = AppConstants.YOUTUBE_THUMBNAIL_URL;
-        var url = baseUrl.replace('{{VIDEO_ID}}', this.props.url);
+        var url = baseUrl.replace('{{VIDEO_ID}}', this.props.video_id);
 
         return url;
     },
@@ -28,7 +28,7 @@ var PlaylistItem = React.createClass({
         var controls;
         if (this.props.mode === 'client') {
             controls = (
-                <div class='playlist-item-controls'>
+                <div className='playlist-item-controls'>
                     <VoteUp id={this.props.id} />
                     <VoteDown id={this.props.id} />
                 </div>
@@ -39,7 +39,7 @@ var PlaylistItem = React.createClass({
             <li className='playlist-item'>
 
                 <Link to="player" params={{ id: this.props.id }}>
-                    <img src={this.thumbnailUrl(this.props.url)}/>
+                    <img src={this.thumbnailUrl(this.props.video_id)}/>
                 </Link>
 
                 <span>{this.props.votes}</span>
