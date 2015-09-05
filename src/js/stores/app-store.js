@@ -5,6 +5,9 @@ var $ = require('jquery');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
+var playlist = [];
+var playing;
+
 
 function _addItem(item){
     _playlist.push(item);
@@ -20,13 +23,13 @@ function _voteDown(id){
 
 function _getPlaylist() {
     return $.get('http://0.0.0.0:5000/playlist?action=all', function(result) {
-        return result;
+        playlist = result;
     });
 }
 
 function _next() {
     return $.get('http://0.0.0.0:5000/playlist?action=next', function(result) {
-        return result;
+        playing = result;
     });
 }
 
@@ -37,12 +40,9 @@ function _play(video) {
         url = 'http://0.0.0.0:5000/musics/{{ID}}?action=play';
         url = url.replace('{{ID}}', video._id);
 
-        return $.ajax({
+        $.ajax({
             url: url,
-            type: 'PUT',
-            success: function(result) {
-                return result;
-            }
+            type: 'PUT'
         });
     }
 }
@@ -52,17 +52,15 @@ function _reset() {
 
     return $.ajax({
         url: url,
-        type: 'PUT',
-        success: function(result) {
-            return result;
-        }
-    });
+        type: 'PUT'
+    })
+        .then(_getPlaylist)
+        .then(_next);
 }
 
 var AppStore = assign(EventEmitter.prototype, {
 
     emitChange: function(){
-
         this.emit(CHANGE_EVENT);
     },
 
@@ -76,46 +74,67 @@ var AppStore = assign(EventEmitter.prototype, {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getPlaylist: _getPlaylist,
-    play: _play,
-    next: _next,
-    reset: _reset,
+    getPlaylist: function() {
+        return playlist;
+    },
+
+    getPlaying: function() {
+        return playing;
+    },
 
     dispatcherIndex: AppDispatcher.register(function(payload){
 
-        var action = payload.action; // this is our action from handleViewAction
 
-        switch(action.actionType){
+        switch(payload.actionType){
             case AppConstants.ADD_ITEM:
-                _addItem(payload.action.item);
+                _addItem(payload.action.item)
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.VOTE_UP:
-                _voteUp(payload.action.id);
+                _voteUp(payload.action.id)
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.VOTE_DOWN:
-                _voteDown(payload.action.id);
+                _voteDown(payload.action.id)
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.GET_PLAYLIST:
-                _getPlaylist();
+                _getPlaylist()
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.RESET:
-                _reset();
+                _reset()
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.PLAY:
-                _getPlaylist(payload.action.video);
+                _play(payload.video)
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
 
             case AppConstants.NEXT:
-                _getPlaylist();
+                _next()
+                    .then(function () {
+                        AppStore.emitChange();
+                    });
                 break;
         }
-
-        AppStore.emitChange();
 
         return true;
     })

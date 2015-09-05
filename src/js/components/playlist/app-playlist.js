@@ -4,27 +4,34 @@ var React = require('react');
 var PlaylistWatchMixin = require('../../mixins/playlist-watch-mixin');
 var PlaylistItem = require('./app-playlist-item');
 var AppStore = require('../../stores/app-store');
+var AppActions = require('../../actions/app-actions');
 
-function getPlaylist() {
+function getPlaylistState() {
     return {
-        items: []
+        items: AppStore.getPlaylist()
     };
 }
 
 var Playlist = React.createClass({
-    mixins: [PlaylistWatchMixin(getPlaylist)],
+    // mixins: [PlaylistWatchMixin(getPlaylist)],
+    getInitialState: function() {
+        return {
+            items: []
+        };
+    },
 
     componentDidMount: function() {
 
-        var self = this;
+        AppActions.getPlaylist();
+        AppStore.addChangeListener(this._onChange);
+    },
 
-        AppStore.getPlaylist().then(function (result) {
-            if (self.isMounted()) {
-                self.setState({
-                    items: result
-                })
-            }
-        });
+    componentWillUnmount: function() {
+        AppStore.removeChangeListener(this._onChange);
+    },
+
+    _onChange: function() {
+        this.setState(getPlaylistState());
     },
 
     render: function () {
