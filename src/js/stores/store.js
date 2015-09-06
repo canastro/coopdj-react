@@ -12,7 +12,25 @@ var playing;
 
 
 function _addItem(item){
-    _playlist.push(item);
+    var options = {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            url: item,
+            type: 'YOUTUBE'
+        })
+    };
+
+    return fetch(EnvConstants.PLAYLIST.POST, options)
+        .then(function (reponse) {
+            debugger;
+        })
+        .catch(function (error) {
+            debugger;
+        });
 }
 
 function _voteUp(id){
@@ -105,21 +123,21 @@ var AppStore = assign(EventEmitter.prototype, {
 
         switch(payload.actionType){
             case AppConstants.ADD_ITEM:
-                _addItem(payload.action.item)
+                _addItem(payload.item)
                     .then(function () {
                         AppStore.emitChange();
                     });
                 break;
 
             case AppConstants.VOTE_UP:
-                _voteUp(payload.action.id)
+                _voteUp(payload.id)
                     .then(function () {
                         AppStore.emitChange();
                     });
                 break;
 
             case AppConstants.VOTE_DOWN:
-                _voteDown(payload.action.id)
+                _voteDown(payload.id)
                     .then(function () {
                         AppStore.emitChange();
                     });

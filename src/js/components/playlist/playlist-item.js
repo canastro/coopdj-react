@@ -10,11 +10,36 @@ var AppStore = require('../../stores/store');
 
 var PlaylistItem = React.createClass({
 
-    handler: function () {
-        AppActions.play(this.props.id);
+    getInitialState: function() {
+        return {
+            isPlaying: false
+        };
     },
 
-    thumbnailUrl: function(url) {
+    componentDidMount: function() {
+        AppStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        AppStore.removeChangeListener(this._onChange);
+    },
+
+    _onChange: function() {
+        var music = AppStore.getPlaying();
+        var isPlaying;
+
+        if (!music) {
+            return;
+        }
+
+        isPlaying = music._id === this.props.id;
+
+        this.setState({
+            playing: isPlaying
+        });
+    },
+
+    _thumbnailUrl: function(url) {
 
         var baseUrl = AppConstants.YOUTUBE_THUMBNAIL_URL;
         var url = baseUrl.replace('{{VIDEO_ID}}', this.props.video_id);
@@ -25,6 +50,7 @@ var PlaylistItem = React.createClass({
     render: function () {
 
         var controls;
+        var playing;
         if (this.props.mode === 'client') {
             controls = (
                 <div className='playlist-item-controls'>
@@ -34,11 +60,17 @@ var PlaylistItem = React.createClass({
             );
         }
 
+        if (this.state.playing) {
+            playing = (
+                <span>IS PLAYING</span>
+            );
+        }
+
         return (
             <li className='playlist-item'>
-                <img src={this.thumbnailUrl(this.props.video_id)}/>
+                <img src={this._thumbnailUrl(this.props.video_id)}/>
                 <span>{this.props.votes}</span>
-
+                {playing}
                 {controls}
             </li>
         );

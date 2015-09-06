@@ -1,13 +1,15 @@
 /** @jsx React.DOM */
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
-var Index = require('../components/index/index');
-// var Playlist = require('../components/playlist/app-playlist');
+var Header = require('../components/common/header');
 
 var APP = React.createClass({
     render: function () {
         return (
-            <RouteHandler/>
+            <div className="app-container">
+                <Header/>
+                <RouteHandler/>
+            </div>
         )
     }
 });

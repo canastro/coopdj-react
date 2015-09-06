@@ -1,30 +1,35 @@
 @import "../themes/theme";
 
 body {
-    background-color: $color-04;
+    background-color: $color-05;
 }
 
 .app-container {
-    display: flex;
 
     height: 100vh;
+    width: 100vw;
 
-     /* Centering the page */
-    max-width:1200px;
-    margin:0 auto;
+    border-left: 1px solid $grey-20;
+    border-right: 1px solid $grey-20;
+
+    background-color: $white;
 }
 
-.app-details {
-    /* This makes the element grow and take all available space, not taken by the sidebar */
-    flex-grow:1;
-}
+.app-body {
+    display: flex;
+    width: 100%;
+    margin: 50px auto;
 
-aside {
-    /* Give the sidebar a default width, and prevent it from shrinking */
-    flex-shrink:0;
-    width:280px;
-}
+    section {
+        flex-grow: 1
+    }
 
+    aside {
+        /* Give the sidebar a default width, and prevent it from shrinking */
+        flex-shrink:0;
+        width:280px;
+    }
+}
 
 @media all and (max-width: 800px) {
 
@@ -33,7 +38,6 @@ aside {
     }
 
     /* Make the sidebar take the entire width of the screen */
-
     aside {
         width:auto;
     }
