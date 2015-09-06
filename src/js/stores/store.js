@@ -2,9 +2,9 @@ var AppDispatcher = require('../dispatchers/dispatcher');
 var AppConstants = require('../constants/constants');
 var EnvConstants = require('../constants/env');
 var assign = require('react/lib/Object.assign');
-var $ = require('jquery');
 var EventEmitter = require('events').EventEmitter;
 var Promise = require('es6-promise').Promise;
+var fetch = require('whatwg-fetch');
 
 var CHANGE_EVENT = 'change';
 var playlist = [];
@@ -24,32 +24,41 @@ function _voteDown(id){
 }
 
 function _getPlaylist() {
-    return $.get(EnvConstants.PLAYLIST.ALL, function(result) {
-        playlist = result;
-    });
+
+    return fetch(EnvConstants.PLAYLIST.ALL)
+        .then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            playlist = response;
+        });
 }
 
 function _next() {
-    return $.get(EnvConstants.PLAYLIST.NEXT, function(result) {
-        playing = result;
-    });
+    return fetch(EnvConstants.PLAYLIST.NEXT)
+        .then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            playing = response;
+        });
 }
 
 function _play(video) {
     return new Promise(function (resolve, reject) {
         var url;
+        var options;
 
         if (!video.has_played) {
             url = EnvConstants.MUSIC.PLAY;
             url = url.replace('{{ID}}', video._id);
 
-            $.ajax({
-                url: url,
-                type: 'PUT',
-                sucess: function (response) {
-                    resolve(response);
-                }
-            });
+            options = {
+                method: 'PUT'
+            };
+
+            return fetch(url, options)
+                .then(function () {
+                    resolve();
+                });
         } else {
             resolve();
         }
@@ -58,10 +67,11 @@ function _play(video) {
 
 function _reset() {
 
-    return $.ajax({
-        url: EnvConstants.PLAYLIST.RESET,
-        type: 'PUT'
-    })
+    var options = {
+        method: 'PUT'
+    };
+
+    return fetch(EnvConstants.PLAYLIST.RESET, options)
         .then(_getPlaylist)
         .then(_next);
 }

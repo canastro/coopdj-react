@@ -5,7 +5,6 @@ var Playlist = require('../playlist/playlist');
 var YouTube = require('react-youtube');
 var AppStore = require('../../stores/store');
 var AppActions = require('../../actions/actions');
-var $ = require('jquery');
 
 function getPlayingState() {
     return {
@@ -65,7 +64,7 @@ var Host = React.createClass({
         }
 
         return (
-            <div className="app-container">
+            <div className="app-body">
                 <h1>Host</h1>
                 <div className="app-details">
                     {player}
