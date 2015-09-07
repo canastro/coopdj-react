@@ -75,7 +75,7 @@ var PlaylistItem = React.createClass({
 
                     <div className='playlist-item-element playlist-item-votes'>
                         <VoteUp id={this.props.item._id} />
-                        <span>{this.props.item.votes}</span>
+                        <h3>{this.props.item.votes}</h3>
                         <VoteDown id={this.props.item._id} />
                     </div>
                 </li>

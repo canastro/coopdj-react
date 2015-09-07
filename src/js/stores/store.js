@@ -25,9 +25,7 @@ function _addItem(item){
     };
 
     return fetch(EnvConstants.PLAYLIST.POST, options)
-        .then(function (reponse) {
-            debugger;
-        })
+        .then(_getPlaylist)
         .catch(function (error) {
             debugger;
         });

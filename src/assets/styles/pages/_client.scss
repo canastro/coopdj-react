@@ -1,9 +1,23 @@
 
 .playlist-client-container {
 
+    padding: 20px;
+
+    .music-form-container {
+        height: 60px;
+    }
+
+    .playlist {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
     .playlist-item {
+        width: calc(50% - 10px);
         height: 90px;
         margin-bottom: 20px;
+        background-color: $color-04;
     }
 
     .playlist-item-element {
@@ -17,11 +31,23 @@
     }
 
     .playlist-item-title {
+        width: calc(100% - 230px);
         margin-left: 10px;
     }
 }
 
+.playlist-item-votes {
+    width: 100px;
+
+    h3 {
+        width: 20px;
+        display: inline-block;
+        text-align: center;
+    }
+}
+
 .btn-vote {
+    display: inline-block;
     height: 16px;
     width: 16px;
 

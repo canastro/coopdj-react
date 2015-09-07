@@ -27,9 +27,9 @@ var MusicForm = React.createClass({
         var value = this.state.url;
 
         return (
-            <article>
+            <article className="music-form-container">
                 <input className="input-music-url" type="text" value={value} onChange={this.handleChange}/>
-                <button class="btn-submit-music" onClick={this.handleSubmit}>Add</button>
+                <button className="btn-submit-music" onClick={this.handleSubmit}>Add</button>
             </article>
         );
     }
