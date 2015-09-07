@@ -34,11 +34,33 @@ function _addItem(item){
 }
 
 function _voteUp(id){
-    _playlist[id].votes++;
+    var url;
+    var options;
+
+    url = EnvConstants.MUSIC.VOTE_UP;
+    url = url.replace('{{ID}}', id);
+
+    options = {
+        method: 'PUT'
+    };
+
+    return fetch(url, options)
+        .then(_getPlaylist);
 }
 
 function _voteDown(id){
-    _playlist[id].votes--;
+    var url;
+    var options;
+
+    url = EnvConstants.MUSIC.VOTE_DOWN;
+    url = url.replace('{{ID}}', id);
+
+    options = {
+        method: 'PUT'
+    };
+
+    return fetch(url, options)
+        .then(_getPlaylist);
 }
 
 function _getPlaylist() {

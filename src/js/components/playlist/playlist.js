@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var PlaylistWatchMixin = require('../../mixins/playlist-watch-mixin');
 var PlaylistItem = require('./playlist-item');
 var AppStore = require('../../stores/store');
 var AppActions = require('../../actions/actions');
@@ -38,7 +37,7 @@ var Playlist = React.createClass({
         var mode = this.props.mode;
         var items = this.state.items.map(function (item) {
             return (
-                <PlaylistItem id={item._id} video_id={item.video_id} votes={item.votes} mode={mode}/>
+                <PlaylistItem key={item._id}  item={item} mode={mode}/>
             )
         });
 

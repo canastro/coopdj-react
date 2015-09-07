@@ -32,33 +32,25 @@ var PlaylistItem = React.createClass({
             return;
         }
 
-        isPlaying = music._id === this.props.id;
+        isPlaying = music._id === this.props.item._id;
 
         this.setState({
             playing: isPlaying
         });
     },
 
-    _thumbnailUrl: function(url) {
+    _thumbnailUrl: function(id) {
 
         var baseUrl = AppConstants.YOUTUBE_THUMBNAIL_URL;
-        var url = baseUrl.replace('{{VIDEO_ID}}', this.props.video_id);
+        var url = baseUrl.replace('{{VIDEO_ID}}', id);
 
         return url;
     },
 
     render: function () {
 
-        var controls;
         var playing;
-        if (this.props.mode === 'client') {
-            controls = (
-                <div className='playlist-item-controls'>
-                    <VoteUp id={this.props.id} />
-                    <VoteDown id={this.props.id} />
-                </div>
-            );
-        }
+        var title;
 
         if (this.state.playing) {
             playing = (
@@ -66,12 +58,38 @@ var PlaylistItem = React.createClass({
             );
         }
 
+        title = (
+            <div className="playlist-item-element playlist-item-title">
+                <span>{this.props.item.title}</span>
+            </div>
+        );
+
+        if (this.props.mode === 'client') {
+            return (
+
+                <li className='playlist-item'>
+
+                    <img className='playlist-item-element playlist-item-thumbnail' src={this._thumbnailUrl(this.props.item.video_id)}/>
+
+                    {title}
+
+                    <div className='playlist-item-element playlist-item-votes'>
+                        <VoteUp id={this.props.item._id} />
+                        <span>{this.props.item.votes}</span>
+                        <VoteDown id={this.props.item._id} />
+                    </div>
+                </li>
+            );
+        }
+
         return (
             <li className='playlist-item'>
-                <img src={this._thumbnailUrl(this.props.video_id)}/>
-                <span>{this.props.votes}</span>
+
+                {title}
+
+                <img src={this._thumbnailUrl(this.props.item.video_id)}/>
+                <span>{this.props.item.votes}</span>
                 {playing}
-                {controls}
             </li>
         );
     }

@@ -6,7 +6,11 @@ var VoteDown = React.createClass({
         AppActions.voteDown(this.props.id)
     },
     render:function(){
-        return <button onClick={this.handler}>-</button>
+        return (
+            <div className="btn-vote btn-votedown" onClick={this.handler}>
+                <i className="fa fa-minus-square"></i>
+            </div>
+        );
     }
 });
 

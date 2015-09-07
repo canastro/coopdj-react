@@ -2,11 +2,15 @@ var React = require('react');
 var AppActions = require('../../actions/actions');
 
 var VoteUp = React.createClass({
-    handler: function(){
+    handler: function (){
         AppActions.voteUp(this.props.id)
     },
-    render:function(){
-        return <button onClick={this.handler}>+</button>
+    render: function (){
+        return (
+            <div className="btn-vote btn-voteup" onClick={this.handler}>
+                <i className="fa fa-plus-square"></i>
+            </div>
+        );
     }
 });
 
