@@ -1,0 +1,33 @@
+
+.playlist-client-container {
+
+    .playlist-item {
+        height: 90px;
+        margin-bottom: 20px;
+    }
+
+    .playlist-item-element {
+        display: inline-block;
+        height: 100%;
+        vertical-align: top;
+    }
+
+    .playlist-item-thumbnail {
+        width: 120px;
+    }
+
+    .playlist-item-title {
+        margin-left: 10px;
+    }
+}
+
+.btn-vote {
+    height: 16px;
+    width: 16px;
+
+    cursor: pointer;
+
+    &:hover {
+        color: $color-03;
+    }
+}

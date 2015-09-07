@@ -1,16 +1,13 @@
 @import "../themes/theme";
 
 body {
-    background-color: $color-05;
+    font-family: 'Lato', serif;
 }
 
 .app-container {
 
     height: 100vh;
     width: 100vw;
-
-    border-left: 1px solid $grey-20;
-    border-right: 1px solid $grey-20;
 
     background-color: $white;
 }

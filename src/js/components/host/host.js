@@ -13,8 +13,10 @@ var Host = React.createClass({
                 <section>
                     <Player/>
                 </section>
-                <aside className="app-sidebar">
-                    <button onClick={this._reset}>Reset</button>
+                <aside className="app-sidebar playlist-host-container">
+                    <div className="btn-reset" onClick={this._reset}>
+                        <i className="fa fa-refresh"></i>
+                    </div>
                     <Playlist mode="host"/>
                 </aside>
             </section>

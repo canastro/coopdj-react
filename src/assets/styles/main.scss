@@ -16,7 +16,11 @@
 
 // Page-specific stylesheets
 @import "pages/home";
+@import "pages/client";
+@import "pages/host";
 
 // Themes
 @import "themes/theme";
 @import "themes/admin";
+
+@import "font-awesome";

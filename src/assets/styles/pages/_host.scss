@@ -1,0 +1,32 @@
+
+.playlist-host-container {
+
+    .playlist {
+        padding-left: 10px;
+    }
+
+    .playlist-item {
+        padding: 20px 0;
+    }
+
+    .playlist-item-title {
+        // @include ellipsis(280px);
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+.btn-reset {
+
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+
+    &:hover {
+        color: $color-01;
+
+        .fa {
+            @extend 'fa-spin';
+        }
+    }
+}
